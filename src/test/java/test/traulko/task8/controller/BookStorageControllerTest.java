@@ -18,7 +18,7 @@ public class BookStorageControllerTest {
         String currentCommand = "ADD_BOOK";
         Map<String, Object> parameters = new HashMap<>();
         parameters.put(ParameterType.NAME,"Book");
-        parameters.put(ParameterType.AUTHOR, "Yanka Kupala, Yakub Kolas");
+        parameters.put(ParameterType.AUTHOR, "Yanka Kupala,Yakub Kolas");
         parameters.put(ParameterType.PAGES_COUNT, 156);
         parameters.put(ParameterType.PUBLISHING_YEAR, 2020);
         Map<String, Object> actual = BookStorageController.getInstance().processRequest(currentCommand, parameters);

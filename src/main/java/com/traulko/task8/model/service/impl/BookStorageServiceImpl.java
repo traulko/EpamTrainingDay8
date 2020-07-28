@@ -61,9 +61,14 @@ public class BookStorageServiceImpl implements BookStorageService {
     public CustomBook findById(long id) throws BookStorageServiceException {
         DaoFactory daoFactory = DaoFactory.getInstance();
         BookListDao bookListDAO = daoFactory.getBookListDao();
+        BookValidator validator = new BookValidator();
         CustomBook book;
         try {
-            book = bookListDAO.findById(id);
+            if (validator.isCorrectIndex(id)) {
+                book = bookListDAO.findById(id);
+            } else {
+                throw new BookStorageServiceException("Incorrect index");
+            }
         } catch (DaoException e) {
             throw new BookStorageServiceException(e.getMessage());
         }
@@ -79,6 +84,8 @@ public class BookStorageServiceImpl implements BookStorageService {
         try {
             if (validator.isCorrectName(name)) {
                 neededBooks = bookListDAO.findByName(name);
+            } else {
+                throw new BookStorageServiceException("Incorrect name");
             }
         } catch (DaoException e) {
             throw new BookStorageServiceException(e.getMessage());
@@ -95,6 +102,8 @@ public class BookStorageServiceImpl implements BookStorageService {
         try {
             if (validator.isCorrectAuthor(author)) {
                 neededBooks = bookListDAO.findByAuthor(author);
+            } else {
+                throw new BookStorageServiceException("Incorrect author");
             }
         } catch (DaoException e) {
             throw new BookStorageServiceException(e.getMessage());
@@ -111,6 +120,8 @@ public class BookStorageServiceImpl implements BookStorageService {
         try {
             if (validator.isCorrectPagesCount(pagesCount)) {
                 neededBooks = bookListDAO.findByPagesCount(pagesCount);
+            } else {
+                throw new BookStorageServiceException("Incorrect pagesCount");
             }
         } catch (DaoException e) {
             throw new BookStorageServiceException(e.getMessage());
@@ -127,6 +138,8 @@ public class BookStorageServiceImpl implements BookStorageService {
         try {
             if (validator.isCorrectPublishingYear(publishingYear)) {
                 neededBooks = bookListDAO.findByPublishingYear(publishingYear);
+            } else {
+                throw new BookStorageServiceException("Incorrect publishingYear");
             }
         } catch (DaoException e) {
             throw new BookStorageServiceException(e.getMessage());

@@ -7,6 +7,15 @@ public class BookValidator {
     public static final int MAX_PUBLISHING_YEAR = 2020;
     public static final int MIN_CHAR_COUNT = 1;
     public static final int MAX_CHAR_COUNT = 255;
+    public static final int MIN_INDEX_VALUE = 1;
+
+    public boolean isCorrectIndex(long index) {
+        boolean result = true;
+        if (index < MIN_INDEX_VALUE) {
+            result = false;
+        }
+        return result;
+    }
 
     public boolean isCorrectName(String name) {
         if (name == null) {

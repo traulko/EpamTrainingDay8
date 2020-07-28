@@ -15,7 +15,7 @@ import java.util.List;
 public class BookListDaoImpl implements BookListDao {
     public static final String ADD_BOOK = "INSERT INTO book (bookName, author, pagesCount, publishingYear) VALUES (?, ?, ?, ?)";
     public static final String REMOVE_BOOK = "DELETE FROM book WHERE bookName = ? AND author = ? AND pagesCount = ? AND publishingYear = ?";
-    public static final String FIND_ALL_BOOKS = "SELECT bookId, bookName, author, edition, pageNumber FROM book";
+    public static final String FIND_ALL_BOOKS = "SELECT bookId, bookName, author, pagesCount, publishingYear FROM book";
     public static final String FIND_BOOK_BY_ID = FIND_ALL_BOOKS + " WHERE bookId = ? ";
     public static final String FIND_BOOKS_BY_NAME = FIND_ALL_BOOKS + " WHERE bookName = ? ";
     public static final String FIND_BOOKS_BY_AUTHOR = FIND_ALL_BOOKS + " WHERE author = ? ";
@@ -39,7 +39,7 @@ public class BookListDaoImpl implements BookListDao {
             statement.setInt(4, book.getPublishingYear());
             statement.executeUpdate();
         } catch (SQLException e) {
-            throw new DaoException("Error while adding book to database", e);
+            throw new DaoException("Error while adding book", e);
         } finally {
             connectionPool.releaseConnection(connection);
         }
@@ -56,7 +56,7 @@ public class BookListDaoImpl implements BookListDao {
             statement.setInt(4, book.getPublishingYear());
             statement.executeUpdate();
         } catch (SQLException e) {
-            throw new DaoException("Error while removing book from database", e);
+            throw new DaoException("Error while removing book", e);
         } finally {
             connectionPool.releaseConnection(connection);
         }
@@ -76,7 +76,7 @@ public class BookListDaoImpl implements BookListDao {
                 }
             }
         } catch (SQLException e) {
-            throw new DaoException("Error while finding book by id from database", e);
+            throw new DaoException("Error while finding book by id", e);
         } finally {
             connectionPool.releaseConnection(connection);
         }
@@ -97,7 +97,7 @@ public class BookListDaoImpl implements BookListDao {
                 }
             }
         } catch (SQLException e) {
-            throw new DaoException("Error while finding books by name from database", e);
+            throw new DaoException("Error while finding books by name", e);
         } finally {
             connectionPool.releaseConnection(connection);
         }
@@ -118,7 +118,7 @@ public class BookListDaoImpl implements BookListDao {
                 }
             }
         } catch (SQLException e) {
-            throw new DaoException("Error while finding books by author from database", e);
+            throw new DaoException("Error while finding books by author", e);
         } finally {
             connectionPool.releaseConnection(connection);
         }
@@ -139,7 +139,7 @@ public class BookListDaoImpl implements BookListDao {
                 }
             }
         } catch (SQLException e) {
-            throw new DaoException("Error while finding books by pagesCount from database", e);
+            throw new DaoException("Error while finding books by pagesCount", e);
         } finally {
             connectionPool.releaseConnection(connection);
         }
@@ -160,7 +160,7 @@ public class BookListDaoImpl implements BookListDao {
                 }
             }
         } catch (SQLException e) {
-            throw new DaoException("Error while finding books by publishingYear from database", e);
+            throw new DaoException("Error while finding books by publishingYear", e);
         } finally {
             connectionPool.releaseConnection(connection);
         }
@@ -281,7 +281,7 @@ public class BookListDaoImpl implements BookListDao {
                 }
             }
         } catch (SQLException e) {
-            throw new DaoException("Error while get all books from database", e);
+            throw new DaoException("Error while get all books", e);
         } finally {
             connectionPool.releaseConnection(connection);
         }
